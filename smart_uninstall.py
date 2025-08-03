@@ -130,6 +130,9 @@ if __name__ == "__main__":
             print(f"Os seguintes pacotes serão desinstalados: {', '.join(sorted(list(packcages_to_uninstall)))}")
             print(f"\nAgora você pode desinstalar o '{target_package}' e suas dependências exclusivas usando: ")
             uninstalling_package(output_req_file)
+            
             # print(f"\n    pip uninstall -r {output_req_file} -y")
         else:
             print(f"\nNão foi possível gerar um arquivo de desinstalação para '{target_package}'.")
+    os.remove(output_req_file)
+    os.remove(json_filename)
