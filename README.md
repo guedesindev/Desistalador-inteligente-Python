@@ -5,7 +5,7 @@ Não muito raro você inicia um ambiente de desenvolvimento Python, começa a in
 
 Alguns resolvem este problema por usar o ambiente com o `pyenv` ou com `poetry` que são gerenciadores de dependências mais inteligentes que o `pip`. O que já resolve este problema. Mas eu pensei, por que não criar um script que já faz isso para mim? Assim, na tentativa de entender como o `poetry` funciona criei o `smart_uninstall.py` que é o resultado do meu entendimento da ferramenta `poetry`. Pode ser que eu tenha entendido errado o funcionamento? Sim posso ter entendido errado. Pode ser que o poetry funcione de forma mais simples? Sim pode ser que funcione de modo mais simples. Mas achei legal ter feito esse projeto e caso você que esteja vendo este repositório tenha sugestões de como realizar o gerenciamento de modo melhor, estou aceitando sugetões e ensinamentos. Sou inician em Python e não sou desenvolvedor profissional, e este é o meu script de gerenciamento de dependÊncias.
 
-## Como Funciona?
+## Preparação do ambiente
 
 Para mim é sempre mais fácil de entender algo, quando penso de modo prático utilizando exemplos. Então, vamos lá. Eu criei um ambiente virtual `.env`
 obs.: Fiz tudo no ambiente windows, utilizando o terminal do windows, com o powershell como prompt de comandos.
@@ -41,5 +41,23 @@ Para nosso exercício, vamos instalar dois módulos: Pandas e Correios
 Após o processo de instalação, ambos os módulos estarão instalados e suas dependências estarão no ambiente virtual, faça o teste:
 ```powershell
     pip list
-
+    Package         Version
+    --------------- -----------
+    correios        6.4.8
+    numpy           2.3.2
+    packaging       25.0
+    pandas          2.3.1
+    phonenumbers    9.0.10
+    pillow          11.3.0
+    pip             25.2
+    pipdeptree      2.28.0
+    python-dateutil 2.9.0.post0
+    pytz            2025.2
+    six             1.17.0
+    tzdata          2025.2
 ```
+Percebeu quantos módulos foram instalados? Mas por que tantos se nós apenas instalamos o pandas e o correios? Porque cada módulo que instalamos tem suas dependências e o pip as instala automaticamente. 
+
+O problema agora é no momento da desinstalação, porque o pip não faz um gerenciamento das dependências de cada módulo. Por exemplo se eu te perguntar da lista de módulos acima, quais são as dependências do pandas e quais são as dependências do correios, você saberia dizer? E mesmo que saiba, quando desinstalar cada módulo, para que o ambiente fique limpo, precisaremos desinstalar todas as dependências manualmente, o que dá muito trabalho.
+
+## Como funciona?
